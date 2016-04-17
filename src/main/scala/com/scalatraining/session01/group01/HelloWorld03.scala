@@ -6,7 +6,7 @@ object HelloWorld03 extends App {
     println(s"Hello $name!")
   }
 
-  val names = List("World", "Scala", "Awesomeness")
+  val names = List("World", "Scala", "Awesomeness") // TODO show "Add type annotation"
 
   for (name <- names) {
     greet(name)
