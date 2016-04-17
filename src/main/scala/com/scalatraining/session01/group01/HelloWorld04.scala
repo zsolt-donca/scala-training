@@ -1,6 +1,6 @@
 package com.scalatraining.session01.group01
 
-object Example04 extends App {
+object HelloWorld04 extends App {
 
   def greet(name: String): Unit = {
     println(s"Hello $name!")
@@ -8,5 +8,6 @@ object Example04 extends App {
 
   val names = List("World", "Scala", "Awesomeness")
 
+  // functional-style
   names foreach greet
 }
