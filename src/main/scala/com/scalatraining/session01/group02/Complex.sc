@@ -1,5 +1,5 @@
 
-class Complex(real: Double, imaginary: Double) {
+class Complex(val re: Double, val im: Double) {
 
   // auxiliary constructor
   // constructor is defined as a method named 'this'
@@ -7,28 +7,28 @@ class Complex(real: Double, imaginary: Double) {
   def this(real: Double) = this(real, 0)
 
   // public methods (the default modifier is public)
-  def re() = real
-  def im() = imaginary
+  def +(that: Complex) = new Complex(re + that.re, im + that.im)
 
   override def toString = {
-    s"$real + ${imaginary}i"
+    im match {
+      case 1 => s"$re + i"
+      case 0 => s"$re"
+      case -1 => s"$re - i"
+      case value if value < 0 => s"$re - ${-value}i"
+      case value if value > 0 => s"$re + ${im}i"
+    }
   }
 }
 
 val x = new Complex(1, 2)
 val y = new Complex(3, -4)
-val z = new Complex(5)
 
-x.re()
-x.im()
+x + y
 
-// TODO constructors
+// 3.0 - 4.0i
 
-// TODO accessors
-
-// TODO parentheses in class
-
-// TODO constructor vals
+x.re
+x.im
 
 // TODO companion object (zero, one, i)
 
