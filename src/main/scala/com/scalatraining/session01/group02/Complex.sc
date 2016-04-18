@@ -2,8 +2,11 @@
 class Complex(real: Double, imaginary: Double) {
 
   // auxiliary constructor
+  // constructor is defined as a method named 'this'
+  // it must call another constructor
   def this(real: Double) = this(real, 0)
 
+  // public methods (the default modifier is public)
   def re() = real
   def im() = imaginary
 
@@ -19,11 +22,13 @@ val z = new Complex(5)
 x.re()
 x.im()
 
+// TODO constructors
+
+// TODO accessors
+
 // TODO parentheses in class
 
 // TODO constructor vals
-
-// TODO def/val for all members
 
 // TODO companion object (zero, one, i)
 

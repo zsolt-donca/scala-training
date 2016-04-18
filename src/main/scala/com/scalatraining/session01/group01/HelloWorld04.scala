@@ -8,6 +8,6 @@ object HelloWorld04 extends App {
 
   val names = List("World", "Scala", "Awesomeness")
 
-  // functional-style
+  // functional-style, infix notation
   names foreach greet
 }

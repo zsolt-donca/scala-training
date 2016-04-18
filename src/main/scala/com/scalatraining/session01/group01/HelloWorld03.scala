@@ -11,4 +11,7 @@ object HelloWorld03 extends App {
   for (name <- names) {
     greet(name)
   }
+
+  // CTRL+SHIFT+P
+  // quick documentation: CTRL+Q or F1
 }

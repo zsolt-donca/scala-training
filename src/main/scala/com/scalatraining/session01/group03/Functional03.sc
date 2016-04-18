@@ -1,8 +1,14 @@
 
+// linked list
+
 val list: List[String] = "one" :: "two" :: "three" :: "four" :: "five" :: Nil
 
 list.head
 list.tail
+
+// decomposition
+
+val (h :: t) = list
 
 def concatenate(list: List[String]): String = {
   list match {
