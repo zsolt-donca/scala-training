@@ -2,6 +2,7 @@ package com.scalatraining.session02.functions
 
 object FunExample01 extends App {
 
+  // pure function taking an Int and returning an Int
   def abs(n: Int): Int = {
     if (n < 0) -n
     else n
