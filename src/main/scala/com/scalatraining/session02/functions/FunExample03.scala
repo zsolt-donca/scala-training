@@ -25,3 +25,6 @@ object FunExample03 extends App {
   println(formatResult("factorial", 7, factorial))
 
 }
+
+
+// TODO: show Function1[T, R]
