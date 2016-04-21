@@ -21,13 +21,17 @@ object FunExample06 extends App {
 
 }
 
+// TODO show partial application built-in into language
+//
 // TODO Exercise:
 //  1. implement curry and replace "partial1" with currying
 //  2. implement uncurry
 //
-// def curry[A,B,C](f: (A, B) => C): A => (B => C)
+// def curry[A, B, C](f: (A, B) => C): A => (B => C)
 //
-// def uncurry[A,B,C](f: A => B => C): (A, B) => C
+// def uncurry[A, B, C](f: A => B => C): (A, B) => C
+//
+// TODO show currying built-in into language
 //
 // TODO Exercise: Implement the higher-order function that composes two functions.
 //
