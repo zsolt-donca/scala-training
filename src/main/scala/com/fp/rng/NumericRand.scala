@@ -1,5 +1,7 @@
 package com.fp.rng
 
+import com.fp.state._
+
 object NumericRand {
 
   val int: Rand[Int] = _.nextInt
@@ -14,7 +16,7 @@ object NumericRand {
   val nonNegativeInt_old: Rand[Int] = {
     (rng: RNG) => {
       val (int, rng2) = rng.nextInt
-      if (int == Int.MinValue) nonNegativeInt(rng2)
+      if (int == Int.MinValue) nonNegativeInt_old(rng2)
       else (Math.abs(int), rng2)
     }
   }
