@@ -19,6 +19,12 @@ package object state {
     for (a <- ra; b <- rb) yield f(a, b)
   }
 
+  implicit class StateMonad[S, A](rand: State[S, A]) {
+    def map[B](f: A => B) = state.map(rand)(f)
+
+    def flatMap[B](f: A => State[S, B]) = state.flatMap(rand)(f)
+  }
+
   def sequence[S, A](fs: List[State[S, A]]): State[S, List[A]] = {
     fs match {
       case head :: tail => map2(head, sequence(tail))(_ :: _)
@@ -26,15 +32,14 @@ package object state {
     }
   }
 
+  def get[S]: State[S, S] = s => (s, s)
+
+  def set[S](s: S): State[S, Unit] = _ => ((), s)
 
   def modify[S](f: S => S): State[S, Unit] =
-    for {s <- get;
-         _ <- set(f(s))} yield ()
-
-  implicit class StateMonad[S, A](rand: State[S, A]) {
-    def map[B](f: A => B) = state.map(rand)(f)
-
-    def flatMap[B](f: A => State[S, B]) = state.flatMap(rand)(f)
-  }
+    for {
+      s <- get[S]
+      _ <- set[S](f(s))
+    } yield ()
 
 }
