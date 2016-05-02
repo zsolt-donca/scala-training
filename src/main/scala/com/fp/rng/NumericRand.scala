@@ -1,4 +1,4 @@
-package com.scalatraining.session03.rng
+package com.fp.rng
 
 object NumericRand {
 
