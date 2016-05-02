@@ -1,4 +1,4 @@
-package com.scalatraining.session03
+package com.fp
 
 package object rng {
 
@@ -8,8 +8,7 @@ package object rng {
 
   type Rand[+A] = RNG => (A, RNG)
 
-  def unit[A](a: A): Rand[A] =
-    rng => (a, rng)
+  def unit[A](a: A): Rand[A] = rng => (a, rng)
 
   def flatMap[A, B](f: Rand[A])(g: A => Rand[B]): Rand[B] = {
     rng => {
@@ -29,6 +28,10 @@ package object rng {
       case head :: tail => map2(head, sequence(tail))(_ :: _)
       case Nil => unit(Nil)
     }
+  }
+
+  def list[A](n: Int, rand: Rand[A]): Rand[List[A]] = {
+    sequence(List.fill(n)(rand))
   }
 
   case class SimpleRNG(seed: Long) extends RNG {
