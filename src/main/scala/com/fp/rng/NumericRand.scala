@@ -26,7 +26,7 @@ object NumericRand {
   def lessThan(n: Int): Rand[Int] = {
     flatMap(nonNegativeInt)(i => {
       val mod = i % n
-      if (i + (n - 1) - mod >= 0) unit(i)
+      if (i + (n - 1) - mod >= 0) unit(mod)
       else lessThan(n)
     })
   }

@@ -1,9 +1,9 @@
 package com.fp.rng
 
+import org.scalacheck.Shapeless._
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.scalatest.{FlatSpec, Matchers}
-
 
 class NumericRandTest extends FlatSpec with Matchers with GeneratorDrivenPropertyChecks {
 
@@ -22,10 +22,20 @@ class NumericRandTest extends FlatSpec with Matchers with GeneratorDrivenPropert
       rng: RNG =>
         val (result, _) = nonNegativeEven(rng)
         result should be >= 0
-        (result % 2) shouldBe 0
+        (result % 2) should be(0)
     }
   }
 
-  implicit val rngGenerator: Arbitrary[RNG] = Arbitrary(Gen.choose(Long.MinValue, Long.MaxValue).map(SimpleRNG))
+  "lessThan" should "return positive or zero values less than an arbitrary value" in {
+    forAll(rngGenerator, Gen.choose(1, Int.MaxValue)) {
+      (rng: RNG, limit: Int) =>
+        val (result, _) = lessThan(limit)(rng)
+        result should be >= 0
+        result should be < limit
+    }
+  }
+
+  implicit val rngGenerator: Gen[RNG] = Gen.choose(Long.MinValue, Long.MaxValue).map(SimpleRNG)
+  implicit val arbitraryRng = Arbitrary(rngGenerator)
 
 }
