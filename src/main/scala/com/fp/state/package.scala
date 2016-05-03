@@ -36,10 +36,12 @@ package object state {
 
   def set[S](s: S): State[S, Unit] = _ => ((), s)
 
-  def modify[S](f: S => S): State[S, Unit] =
+  def modify[S](f: S => S): State[S, Unit] = modifyPF(PartialFunction(f))
+
+  def modifyPF[S](pf: PartialFunction[S, S]): State[S, Unit] =
     for {
       s <- get[S]
-      _ <- set[S](f(s))
+      _ <- set[S](pf.lift(s).getOrElse(s))
     } yield ()
 
 }

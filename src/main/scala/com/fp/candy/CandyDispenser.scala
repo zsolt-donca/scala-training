@@ -10,37 +10,36 @@ object CandyDispenser {
 
   case object Turn extends Input
 
+  case class Candy()
+
   case class Machine(locked: Boolean, candies: Int, coins: Int)
 
   type CandyState[+A] = State[Machine, A]
 
-  val insert: CandyState[String] = {
-    machine =>
-      machine match {
-        case Machine(true, candies, coins) if candies > 0 =>
-          ("charged", Machine(locked = false, candies, coins + 1))
-        case machine =>
-          ("lost a coin", machine)
-      }
+  val insert: CandyState[Unit] = {
+    modifyPF {
+      case Machine(true, candies, coins) if candies > 0 =>
+        Machine(locked = false, candies, coins + 1)
+    }
   }
 
-  val turnKnob: CandyState[String] = {
+  val turnKnob: CandyState[Option[Candy]] = {
     case Machine(false, candies, coins) if candies > 0 =>
-      ("candy", Machine(locked = true, candies - 1, coins))
+      (Some(Candy()), Machine(locked = true, candies - 1, coins))
     case machine =>
-      ("nothing", machine)
+      (None, machine)
   }
 
-  val apply: Input => CandyState[String] = {
-    case Coin => insert
+  val apply: Input => CandyState[Option[Candy]] = {
+    case Coin => insert.map(_ => None)
     case Turn => turnKnob
   }
 
-  val buyCandy: CandyState[List[String]] = {
+  val buyCandy: CandyState[Option[Candy]] = {
     for {
-      r1 <- insert
-      r2 <- turnKnob
-    } yield List(r1, r2)
+      _ <- insert
+      candyOption <- turnKnob
+    } yield candyOption
   }
 
   /*
@@ -60,10 +59,10 @@ object CandyDispenser {
 
    */
 
-  def simulateMachine(inputs: List[Input]): CandyState[(List[String], Int, Int)] = {
+  def simulateMachine(inputs: List[Input]): CandyState[(List[Candy], Int, Int)] = {
     for {
-      results <- sequence(inputs map apply)
+      candies <- sequence(inputs map apply).map(_.flatten)
       machine <- get[Machine]
-    } yield (results, machine.coins, machine.candies)
+    } yield (candies, machine.coins, machine.candies)
   }
 }
