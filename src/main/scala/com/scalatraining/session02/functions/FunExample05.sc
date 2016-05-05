@@ -23,4 +23,6 @@ findFirst(names, (name: String) => name.contains("bob"))
 
 // TODO Exercise: Write a function that checks whether an array is sorted according to a given comparison function
 //
-// def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean
+def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean = {
+  ???
+}
