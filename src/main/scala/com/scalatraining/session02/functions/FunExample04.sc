@@ -12,6 +12,8 @@ def findFirst(strings: Array[String], key: String): Int = {
 }
 
 
-val names = Array("alice", "bob", "joe")
+val names = Array("alice", "bobby", "bob", "joe")
 findFirst(names, "bob")
 
+// find first that starts with "b"
+// find first that contains "bob" (matches "bob" or "bobby")
