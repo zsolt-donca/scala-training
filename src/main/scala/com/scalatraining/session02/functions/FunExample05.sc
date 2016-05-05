@@ -24,5 +24,18 @@ findFirst(names, (name: String) => name.contains("bob"))
 // TODO Exercise: Write a function that checks whether an array is sorted according to a given comparison function
 //
 def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean = {
+  // not (yet) implemented
   ???
 }
+
+val stringCompare: (String, String) => Boolean = {
+  (a, b) => a.compareToIgnoreCase(b) <= 0
+}
+
+// should be false
+isSorted(names, stringCompare)
+
+val names2 = Array("alice", "bob", "bobby", "joe")
+
+// should be true
+isSorted(names2, stringCompare)
