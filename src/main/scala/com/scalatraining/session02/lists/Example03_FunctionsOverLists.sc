@@ -22,53 +22,47 @@ object List {
   */
 def concat(list: List[String]): String = {
   list match {
-    case Nil => "" // == 0 elements
     case Cons(head, tail) => head + " " + concat(tail) // >= 1 elements
+    case Nil => "" // == 0 elements
   }
 }
 
-concat(List("one", "two", "three", "four", "five"))
+concat(List("one", "two", "three", "four"))
 
 //   Substitution Model
 
 // step 0
-concat(List("one", "two", "three", "four", "five"))
+concat(List("one", "two", "three", "four"))
 
 // step 1
-"one" + " " + concat(List("two", "three", "four", "five"))
+"one" + " " + concat(List("two", "three", "four"))
 
 // step 2
-"one " + concat(List("two", "three", "four", "five"))
+"one " + concat(List("two", "three", "four"))
 
 // step 3
-"one " + "two" + " " + concat(List("three", "four", "five"))
+"one " + "two" + " " + concat(List("three", "four"))
 
 // step 4
-"one two " + concat(List("three", "four", "five"))
+"one two " + concat(List("three", "four"))
 
 // step 5
-"one two " + "three" + " " + concat(List("four", "five"))
+"one two " + "three" + " " + concat(List("four"))
 
 // step 6
-"one two three " + concat(List("four", "five"))
+"one two three " + concat(List("four"))
 
 // step 7
-"one two three " + "four" + " " + concat(List("five"))
+"one two three " + "four" + " " + concat(List())
 
 // step 8
-"one two three four " + concat(List("five"))
+"one two three four " + concat(List())
 
 // step 9
-"one two three four " + "five" + " " + concat(List())
+"one two three four " + ""
 
 // step 10
-"one two three four five " + concat(List())
-
-// step 11
-"one two three four five " + ""
-
-// step 12
-"one two three four five "
+"one two three four "
 
 
 
