@@ -14,6 +14,7 @@ def factorial(n: Int): Int = {
 }
 
 // higher-order function (a function that takes another function as parameter)
+
 def formatResult(name: String, n: Int, f: Int => Int): String = {
   s"The $name of $n is ${f(n)}"
 }

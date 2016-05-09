@@ -11,6 +11,10 @@ def findFirst(strings: Array[String], key: String): Int = {
   loop(0)
 }
 
+// indexing an Array[T] behaves like a function: Int => T
+//
+// hence the syntax:   array(i)
+
 
 val names = Array("alice", "bobby", "bob", "joe")
 findFirst(names, "bob")

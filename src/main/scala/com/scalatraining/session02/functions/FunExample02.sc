@@ -14,6 +14,7 @@ def factorial(n: Int): Int = {
 }
 
 // a function taking an Int and returning a String
+
 def formatAbs(n: Int): String = {
   s"The absolute value of $n is ${abs(n)}"
 }
@@ -28,3 +29,17 @@ formatFactorial(7)
 // TODO Exercise: Write a recursive function to get the n-th Fibonacci number.
 // TODO The first two Fibonacci numbers are 0 and 1.
 // TODO Your definition should use a local tail-recursive function.
+
+def fibonacci(n: Int): Int = {
+  def go(prev: Int, current: Int, i: Int): Int = {
+    if (i == n) {
+      current
+    } else {
+      go(current, prev + current, i + 1)
+    }
+  }
+
+  go(0, 1, 0)
+}
+
+(0 to 10) map fibonacci
