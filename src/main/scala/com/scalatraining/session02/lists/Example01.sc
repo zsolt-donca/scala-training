@@ -8,7 +8,7 @@ case object Nil extends List[Nothing]
 
 // List is an "Algebraic Data Type"
 
-val list1 = Cons("one", Cons("two", Cons("three", Cons("four", Cons("five", Nil)))))
+val list1: List[String] = Cons("one", Cons("two", Cons("three", Cons("four", Cons("five", Nil)))))
 
 
 // Companion Object

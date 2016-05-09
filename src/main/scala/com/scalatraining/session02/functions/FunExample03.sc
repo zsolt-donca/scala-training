@@ -23,4 +23,23 @@ formatResult("absolute value", -42, abs)
 formatResult("factorial", 7, factorial)
 
 
-// TODO: show Function1[T, R]
+
+
+
+
+// TODO: explain Function1[T, R]
+
+val absFun: Function1[Int, Int] = new Function1[Int, Int] {
+  override def apply(arg1: Int): Int = abs(arg1)
+}
+
+
+val average: Function2[Int, Int, Double] = new Function2[Int, Int, Double] {
+  override def apply(arg1: Int, arg2: Int): Double = (arg1 + arg2) / 2.0
+}
+
+average(1, 2)
+
+// TODO: compare to java.util.function.BiFunction
+
+// java.util.function.BiConsumer
