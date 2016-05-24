@@ -7,7 +7,12 @@ def findFirst[T](strings: Array[T], p: T => Boolean): Int = {
   def loop(n: Int): Int = {
     if (n >= strings.length) -1
     else if (p(strings(n))) n
-    else loop(n + 1)
+    else {
+      strings(n) = strings(0)
+      loop(n + 1)
+    }
+
+
   }
 
   loop(0)

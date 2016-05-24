@@ -73,8 +73,8 @@ concat(List("one", "two", "three", "four"))
   */
 def sum(list: List[Int]): Int = {
   list match {
-    case Nil => 0
     case Cons(head, tail) => head + sum(tail)
+    case Nil => 0
   }
 }
 
@@ -89,9 +89,9 @@ sum(nums1)
   */
 def product(list: List[Double]): Double = {
   list match {
-    case Nil => 1.0
-    case Cons(0, _) => 0.0
     case Cons(head, tail) => head * product(tail)
+    case Cons(0, _) => 0.0
+    case Nil => 1.0
   }
 }
 
@@ -105,7 +105,8 @@ product(nums2)
 // TODO use it with "," to make comma-separated list
 // TODO drop the last comma (to make it "one, two, three, four, five)"
 
-
+//
+// TODO Talk about Structural Sharing
 //
 // Exercises:
 //

@@ -16,7 +16,8 @@ def factorial(n: Int): Int = {
 // higher-order function (a function that takes another function as parameter)
 
 def formatResult(name: String, n: Int, f: Int => Int): String = {
-  s"The $name of $n is ${f(n)}"
+  val result: Int = f(n)
+  s"The $name of $n is ${result}"
 }
 
 formatResult("absolute value", -42, abs)
@@ -29,12 +30,13 @@ formatResult("factorial", 7, factorial)
 
 // TODO: explain Function1[T, R]
 
-val absFun: Function1[Int, Int] = new Function1[Int, Int] {
+val absFun: Int => Int = new Function1[Int, Int] {
   override def apply(arg1: Int): Int = abs(arg1)
 }
 
+val absFun2: Int => Int = abs
 
-val average: Function2[Int, Int, Double] = new Function2[Int, Int, Double] {
+val average: (Int, Int) => Double = new Function2[Int, Int, Double] {
   override def apply(arg1: Int, arg2: Int): Double = (arg1 + arg2) / 2.0
 }
 
